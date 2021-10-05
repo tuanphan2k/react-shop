@@ -1,0 +1,60 @@
+.header {
+  padding: 10px;
+  height: 60px;
+  width: 100%;
+  background: #222f3f;
+
+  img {
+    display: block;
+    margin-right: 30px;
+  }
+
+  &__logo {
+    margin: 0 30px 0 0;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 400px;
+  }
+}
+
+.main {
+  margin: 16px;
+  &__sidebar {
+    margin-right: 16px;
+    // overflow-y: scroll;
+    // height: calc(100% - 60px);
+    width: 250px;
+  }
+
+  &__container {
+    width: calc(100% - 250px);
+
+    .card {
+      height: 350px;
+      &-img-top {
+        display: block;
+        max-width: 100%;
+        width: auto;
+        max-height: 230px;
+        padding: 30px;
+      }
+
+      &__name {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      &__price {
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+  }
+}

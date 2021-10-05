@@ -1,0 +1,303 @@
+{
+  "categories" : [
+    {
+      "id": 1,
+      "name" : "Amazon",
+      "isChecked": "false"
+    },
+    {
+      "id": 2,
+      "name" : "Google",
+      "isChecked": "false"
+    },
+    {
+      "id": 3,
+      "name" : "Dell",
+      "isChecked": "false"
+    },
+    {
+      "id": 4,
+      "name" : "Metra",
+      "isChecked": "false"
+    },
+    {
+      "id": 5,
+      "name" : "HD",
+      "isChecked": "false"
+    },
+    {
+      "id": 6,
+      "name" : "Apple",
+      "isChecked": "false"
+    },
+    {
+      "id": 7,
+      "name" : "Insignia",
+      "isChecked": "false"
+    }
+  ],
+
+  "types" : [
+    {
+      "id" : 1,
+      "name" : "Appliances",
+      "subTypes" : [
+        {
+          "id" : 1,
+          "name" : "Electronics"
+        },
+        {
+          "id" : 2,
+          "name" : "Dishwashers"
+        },
+        {
+          "id" : 3,
+          "name" : "Heaters"
+        },
+        {
+          "id" : 4,
+          "name" : "Microwaves"
+        }
+      ]
+    },
+    {
+      "id" : 2,
+      "name" : "Audio",
+      "subTypes" : [
+        {
+          "id" : 5,
+          "name" : "Auxiliary Input Cables"
+        },
+        {
+          "id" : 6,
+          "name" : "FM Transmitters"
+        },
+        {
+          "id" : 7,
+          "name" : "Car Electronics & GPS"
+        }
+      ]
+    },
+    {
+      "id" : 3,
+      "name" : "Computers & Tablets",
+      "subTypes" : [
+        {
+          "id" : 8,
+          "name" : "All Desktops"
+        },
+        {
+          "id" : 9,
+          "name" : "Network cards"
+        },
+        {
+          "id" : 10,
+          "name" : "Lap Desks"
+        }
+      ]
+    }
+  ],
+
+  "products" : [
+    {
+      "id" : 1,
+      "categoryId" : 1,
+      "name" : "Amazon - Fire TV Stick with Alexa Voice Remote - Black",
+      "price" : 39.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5477500_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 2
+    },
+    {
+      "id" : 2,
+      "categoryId" : 2,
+      "name" : "Google - Chromecast - Black",
+      "price" : 35,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/4397400_sb.jpg",
+      "typeId" : 2,
+      "subTypeId" : 5
+    },
+    {
+      "id" : 3,
+      "categoryId" : 3,
+      "name" : "Dell - Inspiron 15.6 Touch-Screen Laptop - Intel Core i5 - 6GB Memory - 1TB Hard Drive - Black",
+      "price" : 499.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5588602_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 4,
+      "categoryId" : 1,
+      "name" : "Amazon - Echo Dot",
+      "price" : 49.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5578851_sb.jpg",
+      "typeId" : 3,
+      "subTypeId" : 8
+    },
+    {
+      "id" : 5,
+      "categoryId" : 6,
+      "name" : "Apple - MacBook Air® (Latest Model) - 13.3 Display - Intel Core i5 - 8GB Memory - 128GB Flash Storage - Silver",
+      "price" : 999.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/6443034_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 6,
+      "categoryId" : 1,
+      "name" : "Sharp - 50 Class (49.5 Diag.) - LED - 1080p - Smart - HDTV Roku TV - Black",
+      "price" : 429.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/4863102_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 7,
+      "categoryId" : 1,
+      "name" : "Rocketfish™ - Tilting TV Wall Mount for Most 32-70 TVs - Black",
+      "price" : 99.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/9881868_rb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 8,
+      "categoryId" : 1,
+      "name" : "LG - Ultra Slim 8x Max. DVD Write Speed External USB DVD±RW/CD-RW Drive - Black",
+      "price" : 39.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5407064_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 9,
+      "categoryId" : 1,
+      "name" : "Roku - Express Streaming Media Player - Black",
+      "price" : 29.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5513500_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 10,
+      "categoryId" : 1,
+      "name" : "Insignia™ - 55 Class - (54.6 Diag.) - LED - 1080p - HDTV - Black",
+      "price" : 29.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/4806800_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 11,
+      "categoryId" : 1,
+      "name" : "Sony - BDP-S3700 - Streaming Wi-Fi Built-In Blu-ray Player - Black",
+      "price" : 89.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/4743301_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 12,
+      "categoryId" : 1,
+      "name" : "Amazon - Echo Dot",
+      "price" : 49.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5578864_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 13,
+      "categoryId" : 1,
+      "name" : "Harman/kardon - Onyx Mini Portable Wireless Speaker - Black",
+      "price" : 49.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5495315_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 14,
+      "categoryId" : 1,
+      "name" : "Insignia™ - Portable Wireless Speaker - Black",
+      "price" : 49.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5496202_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 15,
+      "categoryId" : 1,
+      "name" : "GoPro - HERO5 Black 4K Action Camera",
+      "price" : 399.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5579154_rb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 16,
+      "categoryId" : 1,
+      "name" : "Epson - Expression Home XP-430 Small-in-One Wireless All-In-One Printer",
+      "price" : 99.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/4901515_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 17,
+      "categoryId" : 1,
+      "name" : "Sony - $20 PlayStation Network Card",
+      "price" : 20,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/8945804_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 5,
+      "categoryId" : 6,
+      "name" : "Apple - MacBook Pro® - 13 Display - Intel Core i5 - 8 GB Memory - 256GB Flash Storage (latest model) - Space Gray",
+      "price" : 1499.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/6444006_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 5,
+      "categoryId" : 6,
+      "name" : "Apple - MacBook® Pro - 15.4 Display - Intel Core i7 - 16GB Memory - 256GB Flash Storage - Silver",
+      "price" : 1999.99,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/8532502_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    },
+    {
+      "id" : 5,
+      "categoryId" : 6,
+      "name" : "Apple - Apple Watch Nike+ 42mm Space Gray Aluminum Case Black/Volt Nike Sport Band - Space Gray Aluminum",
+      "price" : 399,
+      "rate" : 4,
+      "img" : "https://cdn-demo.algolia.com/bestbuy-0118/5547500_sb.jpg",
+      "typeId" : 1,
+      "subTypeId" : 1
+    }
+  ]
+}
