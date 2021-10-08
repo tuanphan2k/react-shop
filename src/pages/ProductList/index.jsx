@@ -1,66 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
 import { Pagination, Input, Rate } from "antd";
-import productApi from "../../api/productApi";
+
 import ProductItem from "./components/ProductItem";
+import {
+  getProductListAction,
+  getCategoryListAction,
+  getTypeListAction,
+} from "../../redux/actions";
 import "./styles.scss";
 
 const { Search } = Input;
 
-function ProductList() {
-  const [productList, setProductList] = useState([]);
-  const [categoryList, setCategoryList] = useState([]);
-  const [totalRow, setTotalRow] = useState();
+function ProductList({
+  getProductList,
+  getCategoryList,
+  getTypeList,
+  productList,
+  categoryList,
+  typeList,
+}) {
   const [filterProduct, setFilterProduct] = useState({ _page: 1, _limit: 8 });
   const [filterCategory, setFilterCategory] = useState({ _page: 1, _limit: 5 });
   const [stringUrl, setStringUrl] = useState("");
   const [isShowBtnClear, setIsShowbtnClear] = useState(false);
   const [rateSelected, setRateSelected] = useState(null);
   const [priceSelected, setPriceSelected] = useState(null);
-  const [typeList, setTypeList] = useState([]);
   const [typeSelected, setTypeSelected] = useState(null);
   const [subTypeSelected, setSubTypeSelected] = useState(null);
+  const checkRef = useRef(null);
 
   useEffect(() => {
-    const fetchProductList = async () => {
-      const params = {
-        ...filterProduct,
-      };
-
-      const response = await productApi.getProductList(params, stringUrl);
-      setProductList(response.data);
-      setTotalRow(response.headers["x-total-count"]);
-    };
-
-    fetchProductList();
+    getProductList({
+      ...filterProduct,
+      stringUrl,
+    });
   }, [filterProduct, stringUrl]);
 
   useEffect(() => {
-    const fetchCategoryList = async () => {
-      const params = {
-        ...filterCategory,
-      };
-
-      const response = await productApi.getCategoryList(params);
-      setCategoryList(response.data);
-    };
-    fetchCategoryList();
+    getCategoryList({
+      ...filterCategory,
+    });
   }, [filterCategory]);
 
   useEffect(() => {
-    const fetchTypeList = async () => {
-      const params = {
-        _page: 1,
-        _limit: 10,
-      };
-
-      const response = await productApi.getTypeList(params);
-      setTypeList(response.data);
-    };
-    fetchTypeList();
+    getTypeList({});
   }, []);
 
   function renderProductList() {
-    return productList.map((item, index) => {
+    return productList.data.map((item, index) => {
       return (
         <ProductItem
           key={index}
@@ -74,24 +62,34 @@ function ProductList() {
   }
 
   function renderCategoryList() {
-    return categoryList.map((item, index) => {
-      let isChecked = item.isChecked === "true";
-      return (
-        <label key={index}>
-          <input
-            className="mx-3"
-            name={item.name}
-            value={item.id}
-            type="checkbox"
-            checked={isChecked}
-            onChange={(e) => {
-              handleCheckCategory(e);
-            }}
-          />
-          {item.name}
-        </label>
-      );
-    });
+    if (categoryList.data.length > 0) {
+      const newCategoryList = categoryList.data.map((item) => {
+        return {
+          ...item,
+          isChecked: false,
+        };
+      });
+      console.log(newCategoryList);
+
+      return newCategoryList.map((item, index) => {
+        return (
+          <label key={index}>
+            <input
+              ref={checkRef}
+              className="mx-3"
+              name={item.name}
+              value={item.id}
+              type="checkbox"
+              defaultChecked={item.isChecked}
+              onChange={(e) => {
+                handleCheckCategory(e);
+              }}
+            />
+            {item.name}
+          </label>
+        );
+      });
+    }
   }
 
   function renderOptionRate() {
@@ -140,7 +138,9 @@ function ProductList() {
       return (
         <div
           className={
-            priceSelected === index ? "fw-bold text-danger px-3" : "px-3 fw-bold"
+            priceSelected === index
+              ? "fw-bold text-danger px-3"
+              : "px-3 fw-bold"
           }
           key={index}
           onClick={() => {
@@ -156,39 +156,37 @@ function ProductList() {
   }
 
   function renderTypeList() {
-    if (typeList) {
-      return typeList.map((item, index) => {
-        return (
-          <li
-            className="nav-item"
-            key={item.id}
-            onClick={(e) => {
-              handleType(item.id);
-            }}
+    return typeList.data.map((item, index) => {
+      return (
+        <li
+          className="nav-item"
+          key={item.id}
+          onClick={(e) => {
+            handleType(item.id);
+          }}
+        >
+          <span
+            className={`${
+              typeSelected === item.id
+                ? "nav-link fw-bold text-danger"
+                : "nav-link fw-bold"
+            }`}
+            data-bs-toggle="collapse"
+            data-bs-target={`#menu_item${index + 1}`}
           >
-            <span
-              className={`${
-                typeSelected === item.id
-                  ? "nav-link fw-bold text-danger"
-                  : "nav-link fw-bold"
-              }`}
-              data-bs-toggle="collapse"
-              data-bs-target={`#menu_item${index + 1}`}
-            >
-              {item.name}
-              <i className="bi small bi-caret-down-fill"></i>
-            </span>
-            <ul
-              id={`menu_item${index + 1}`}
-              className="submenu collapse fw-bold"
-              data-bs-parent="#nav_accordion"
-            >
-              {renderSubTypeList(item)}
-            </ul>
-          </li>
-        );
-      });
-    }
+            {item.name}
+            <i className="bi small bi-caret-down-fill"></i>
+          </span>
+          <ul
+            id={`menu_item${index + 1}`}
+            className="submenu collapse fw-bold"
+            data-bs-parent="#nav_accordion"
+          >
+            {renderSubTypeList(item)}
+          </ul>
+        </li>
+      );
+    });
   }
 
   function renderSubTypeList(type) {
@@ -248,15 +246,6 @@ function ProductList() {
     const categoryId = e.target.value;
     const status = e.target.checked;
 
-    let newCategory = categoryList;
-    newCategory.forEach((item) => {
-      if (item.id == parseInt(categoryId)) {
-        item.isChecked = `${status}`;
-      }
-    });
-
-    setCategoryList(newCategory);
-
     if (status) {
       stringUrl === ""
         ? setStringUrl(stringUrl + `?categoryId=${categoryId}`)
@@ -277,15 +266,15 @@ function ProductList() {
   }
 
   function handleClearFilter() {
+    const inputElement = document.querySelectorAll("input[type='checkbox']");
+    inputElement.forEach((item) => {
+      item.checked = false;
+    });
+
     setIsShowbtnClear(false);
     setFilterProduct({ _page: 1, _limit: 8 });
     setFilterCategory({ _page: 1, _limit: 5 });
     setStringUrl("");
-
-    let newCategoryList = categoryList;
-    newCategoryList.forEach((item) => {
-      item.isChecked = "false";
-    });
 
     setRateSelected(null);
     setPriceSelected(null);
@@ -314,7 +303,7 @@ function ProductList() {
 
   function handleType(typeId) {
     let newFilter = filterProduct;
-    if(newFilter.subTypeId) {
+    if (newFilter.subTypeId) {
       delete newFilter["subTypeId"];
       setSubTypeSelected(null);
     }
@@ -409,7 +398,7 @@ function ProductList() {
               <p className="fw-bold my-2">Ratings</p>
               {renderOptionRate()}
             </div>
-            <div className = "my-4">
+            <div className="my-4">
               <p className="fw-bold my-2">Prices</p>
               {renderOptionPrices()}
             </div>
@@ -417,7 +406,9 @@ function ProductList() {
         </div>
         <div className="main__container">
           <div className="container__top d-flex justify-content-between">
-            <span className="text-dark">{totalRow} results found in 4ms</span>
+            <span className="text-dark">
+              {productList.totalRow} results found in 4ms
+            </span>
             <div>
               <label htmlFor="sort">Sort by</label>
               <select
@@ -436,11 +427,11 @@ function ProductList() {
           </div>
           <div className="row mt-4">{renderProductList()}</div>
           <div className="paginagion d-flex justify-content-center align-items-center mb-5 mt-3">
-            {totalRow / filterProduct._limit > 1 ? (
+            {productList.totalRow / filterProduct._limit > 1 ? (
               <Pagination
                 defaultCurrent={1}
                 pageSize={filterProduct._limit}
-                total={totalRow}
+                total={productList.totalRow}
                 onChange={(page) => {
                   handleChangePagination(page);
                 }}
@@ -455,4 +446,21 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+const mapStateToProps = (state) => {
+  const { productList, categoryList, typeList } = state.productReducer;
+  return {
+    productList,
+    categoryList,
+    typeList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProductList: (params) => dispatch(getProductListAction(params)),
+    getCategoryList: (params) => dispatch(getCategoryListAction(params)),
+    getTypeList: (params) => dispatch(getTypeListAction(params)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
