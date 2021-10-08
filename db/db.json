@@ -2,38 +2,31 @@
   "categories" : [
     {
       "id": 1,
-      "name" : "Amazon",
-      "isChecked": "false"
+      "name" : "Amazon"
     },
     {
       "id": 2,
-      "name" : "Google",
-      "isChecked": "false"
+      "name" : "Google"
     },
     {
       "id": 3,
-      "name" : "Dell",
-      "isChecked": "false"
+      "name" : "Dell"
     },
     {
       "id": 4,
-      "name" : "Metra",
-      "isChecked": "false"
+      "name" : "Metra"
     },
     {
       "id": 5,
-      "name" : "HD",
-      "isChecked": "false"
+      "name" : "HD"
     },
     {
       "id": 6,
-      "name" : "Apple",
-      "isChecked": "false"
+      "name" : "Apple"
     },
     {
       "id": 7,
-      "name" : "Insignia",
-      "isChecked": "false"
+      "name" : "Insignia"
     }
   ],
 

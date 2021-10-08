@@ -75,7 +75,6 @@ function ProductList() {
 
   function renderCategoryList() {
     return categoryList.map((item, index) => {
-      let isChecked = item.isChecked === "true";
       return (
         <label key={index}>
           <input
@@ -83,7 +82,8 @@ function ProductList() {
             name={item.name}
             value={item.id}
             type="checkbox"
-            checked={isChecked}
+            // checked={isChecked}
+            defaultChecked={false}
             onChange={(e) => {
               handleCheckCategory(e);
             }}
@@ -140,7 +140,9 @@ function ProductList() {
       return (
         <div
           className={
-            priceSelected === index ? "fw-bold text-danger px-3" : "px-3 fw-bold"
+            priceSelected === index
+              ? "fw-bold text-danger px-3"
+              : "px-3 fw-bold"
           }
           key={index}
           onClick={() => {
@@ -248,15 +250,6 @@ function ProductList() {
     const categoryId = e.target.value;
     const status = e.target.checked;
 
-    let newCategory = categoryList;
-    newCategory.forEach((item) => {
-      if (item.id == parseInt(categoryId)) {
-        item.isChecked = `${status}`;
-      }
-    });
-
-    setCategoryList(newCategory);
-
     if (status) {
       stringUrl === ""
         ? setStringUrl(stringUrl + `?categoryId=${categoryId}`)
@@ -277,6 +270,11 @@ function ProductList() {
   }
 
   function handleClearFilter() {
+    const inputElement = document.querySelectorAll("input[type='checkbox']");
+    inputElement.forEach((item) => {
+      item.checked = false;
+    });
+    
     setIsShowbtnClear(false);
     setFilterProduct({ _page: 1, _limit: 8 });
     setFilterCategory({ _page: 1, _limit: 5 });
@@ -314,7 +312,7 @@ function ProductList() {
 
   function handleType(typeId) {
     let newFilter = filterProduct;
-    if(newFilter.subTypeId) {
+    if (newFilter.subTypeId) {
       delete newFilter["subTypeId"];
       setSubTypeSelected(null);
     }
@@ -409,7 +407,7 @@ function ProductList() {
               <p className="fw-bold my-2">Ratings</p>
               {renderOptionRate()}
             </div>
-            <div className = "my-4">
+            <div className="my-4">
               <p className="fw-bold my-2">Prices</p>
               {renderOptionPrices()}
             </div>
