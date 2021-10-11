@@ -5,6 +5,10 @@
       "name" : "Amazon"
     },
     {
+      "id": 6,
+      "name" : "Apple"
+    },
+    {
       "id": 2,
       "name" : "Google"
     },
@@ -19,10 +23,6 @@
     {
       "id": 5,
       "name" : "HD"
-    },
-    {
-      "id": 6,
-      "name" : "Apple"
     },
     {
       "id": 7,
